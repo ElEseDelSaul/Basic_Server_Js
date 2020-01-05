@@ -1,4 +1,5 @@
 const express = require('express');
+let morgan = require('morgan');
 //Routes
 const routes = require('./routes/routes');
 
@@ -14,8 +15,9 @@ class Server {
     config() {
         this.app.set('port', process.env.PORT || 3000);
         //Middlewares
+        this.app.use(morgan('dev'));
         this.app.use(express.json());
-        this.app.use(express.urlencoded({extended:false}));
+        this.app.use(express.urlencoded({ extended: false }));
     }
 
     routes() {
